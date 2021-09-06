@@ -31,10 +31,9 @@ function prepareObjects(students) {
     // console.log(student);
     const studentObj = Object.create(Student);
     studentObj.firstName = getFirstName(student.fullname);
-    // const middleName = findMiddleOrNickName(student.fullname);
+    studentObj.middleName = getMiddleName(student.fullname);
     studentObj.nickName = getNickName(student.fullname);
     // console.log(firstName);
-    // console.log(middleName);
     console.log(studentObj);
   });
 }
@@ -50,13 +49,20 @@ function getNickName(fullname) {
   }
 }
 
-function findMiddleOrNickName(fullname) {
+//finds a middle name and returns null if it is a nickname or no middlename
+function getMiddleName(fullname) {
   const trimmedName = fullname.trim().toLowerCase();
   const nameCount = trimmedName.split(" ");
   // console.log(nameCount.length);
   if (nameCount.length > 2) {
-    const middleNameOrNickName = nameCount[1];
-    getMiddleNameOrNickName(middleNameOrNickName);
+    const middleName = trimmedName.substring(trimmedName.indexOf(" ") + 1, trimmedName.lastIndexOf(" "));
+
+    if (middleName.startsWith('"')) {
+      return null;
+    } else {
+      const middleNameCaps = middleName[0].toUpperCase() + middleName.substring(1);
+      return middleNameCaps;
+    }
   } else {
     return null;
   }
@@ -69,11 +75,11 @@ function getFirstName(fullname) {
   return firstNameCaps;
 }
 
-function getMiddleNameOrNickName(mid) {
-  if (mid.startsWith(`"`) === true) {
-    const nickNameCaps = '"' + mid[1].toUpperCase() + mid.substring(2);
-    console.log(nickNameCaps);
-  }
-  //   const middleNameCaps = trimmedName[0].toUpperCase() + trimmedName.substring(1, firsNameEnd);
-  //   return middleNameCaps;
-}
+// function getMiddleNameOrNickName(mid) {
+//   if (mid.startsWith(`"`) === true) {
+//     const nickNameCaps = '"' + mid[1].toUpperCase() + mid.substring(2);
+//     console.log(nickNameCaps);
+//   }
+//   const middleNameCaps = trimmedName[0].toUpperCase() + trimmedName.substring(1, firsNameEnd);
+//   return middleNameCaps;
+//}
