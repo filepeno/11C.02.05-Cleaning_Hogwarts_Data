@@ -33,9 +33,16 @@ function prepareObjects(students) {
     studentObj.firstName = getFirstName(student.fullname);
     studentObj.middleName = getMiddleName(student.fullname);
     studentObj.nickName = getNickName(student.fullname);
-    // console.log(firstName);
     console.log(studentObj);
   });
+}
+
+//finds a first name
+function getFirstName(fullname) {
+  const trimmedName = fullname.trim().toLowerCase();
+  const firsNameEnd = trimmedName.indexOf(" ");
+  const firstNameCaps = trimmedName[0].toUpperCase() + trimmedName.substring(1, firsNameEnd);
+  return firstNameCaps;
 }
 
 //returns a nickname if exists
@@ -67,19 +74,3 @@ function getMiddleName(fullname) {
     return null;
   }
 }
-
-function getFirstName(fullname) {
-  const trimmedName = fullname.trim().toLowerCase();
-  const firsNameEnd = trimmedName.indexOf(" ");
-  const firstNameCaps = trimmedName[0].toUpperCase() + trimmedName.substring(1, firsNameEnd);
-  return firstNameCaps;
-}
-
-// function getMiddleNameOrNickName(mid) {
-//   if (mid.startsWith(`"`) === true) {
-//     const nickNameCaps = '"' + mid[1].toUpperCase() + mid.substring(2);
-//     console.log(nickNameCaps);
-//   }
-//   const middleNameCaps = trimmedName[0].toUpperCase() + trimmedName.substring(1, firsNameEnd);
-//   return middleNameCaps;
-//}
