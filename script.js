@@ -28,11 +28,11 @@ function loadJSON() {
 function prepareObjects(students) {
   console.log("prepareObjects()");
   students.forEach((student) => {
-    // console.log(student);
     const studentObj = Object.create(Student);
     studentObj.firstName = getFirstName(student.fullname);
     studentObj.middleName = getMiddleName(student.fullname);
     studentObj.nickName = getNickName(student.fullname);
+    studentObj.lastName = getLastName(student.fullname);
     console.log(studentObj);
   });
 }
@@ -43,6 +43,12 @@ function getFirstName(fullname) {
   const firsNameEnd = trimmedName.indexOf(" ");
   const firstNameCaps = trimmedName[0].toUpperCase() + trimmedName.substring(1, firsNameEnd);
   return firstNameCaps;
+}
+
+function getLastName(fullname) {
+  const trimmedName = fullname.trim().toLowerCase();
+  const lastNameCaps = trimmedName[trimmedName.lastIndexOf(" ") + 1].toUpperCase() + trimmedName.substring(trimmedName.lastIndexOf(" ") + 2);
+  return lastNameCaps;
 }
 
 //returns a nickname if exists
