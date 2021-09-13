@@ -27,14 +27,18 @@ function loadJSON() {
 
 function prepareObjects(students) {
   console.log("prepareObjects()");
-  students.forEach((student) => {
-    const studentObj = Object.create(Student);
-    studentObj.firstName = getFirstName(student.fullname);
-    studentObj.middleName = getMiddleName(student.fullname);
-    studentObj.nickName = getNickName(student.fullname);
-    studentObj.lastName = getLastName(student.fullname);
-    console.log(studentObj);
-  });
+  const studentArray = students.map(prepareObject);
+  console.log(studentArray);
+}
+
+function prepareObject(student) {
+  const studentObj = Object.create(Student);
+  studentObj.firstName = getFirstName(student.fullname);
+  studentObj.middleName = getMiddleName(student.fullname);
+  studentObj.nickName = getNickName(student.fullname);
+  studentObj.lastName = getLastName(student.fullname);
+  studentObj.house = getHouse(student.house);
+  return studentObj;
 }
 
 //finds a first name
@@ -80,3 +84,11 @@ function getMiddleName(fullname) {
     return null;
   }
 }
+
+function getHouse(house) {
+  const trimmedHouse = house.trim().toLowerCase();
+  const houseCaps = trimmedHouse[0].toUpperCase() + trimmedHouse.substring(1);
+  return houseCaps;
+}
+
+function getImage() {}
