@@ -51,7 +51,12 @@ function getFirstName(fullname) {
 
 function getLastName(fullname) {
   const trimmedName = fullname.trim().toLowerCase();
-  const lastNameCaps = trimmedName[trimmedName.lastIndexOf(" ") + 1].toUpperCase() + trimmedName.substring(trimmedName.lastIndexOf(" ") + 2);
+  let lastNameCaps = trimmedName[trimmedName.lastIndexOf(" ") + 1].toUpperCase() + trimmedName.substring(trimmedName.lastIndexOf(" ") + 2);
+  if (lastNameCaps.includes("-")) {
+    const indexOfDash = lastNameCaps.indexOf("-");
+    lastNameCaps = lastNameCaps.substring(0, indexOfDash) + "-" + lastNameCaps[indexOfDash + 1].toUpperCase() + lastNameCaps.substring(indexOfDash + 2);
+    return lastNameCaps;
+  }
   return lastNameCaps;
 }
 
