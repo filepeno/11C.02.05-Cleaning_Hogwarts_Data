@@ -106,4 +106,5 @@ function getImage(fullname) {
   }
   const imgFileName = lastName + "_" + trimmedName[0] + ".png";
   return imgFileName;
+  // image on FileZilla: http://filipsoudakov.dk/kea/3rd-semester/11c_coding_visual_design/assignments/hacked_hogwarts_student_list/assets/img/zabini_b.png
 }
