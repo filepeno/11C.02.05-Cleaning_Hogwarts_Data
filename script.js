@@ -38,6 +38,7 @@ function prepareObject(student) {
   studentObj.nickName = getNickName(student.fullname);
   studentObj.lastName = getLastName(student.fullname);
   studentObj.house = getHouse(student.house);
+  studentObj.image = getImage(student.fullname);
   return studentObj;
 }
 
@@ -96,4 +97,13 @@ function getHouse(house) {
   return houseCaps;
 }
 
-function getImage() {}
+function getImage(fullname) {
+  const trimmedName = fullname.trim().toLowerCase();
+  const names = trimmedName.split(" ");
+  let lastName = names[names.length - 1];
+  if (lastName.includes("-")) {
+    lastName = lastName.substring(lastName.indexOf("-") + 1);
+  }
+  const imgFileName = lastName + "_" + trimmedName[0] + ".png";
+  return imgFileName;
+}
